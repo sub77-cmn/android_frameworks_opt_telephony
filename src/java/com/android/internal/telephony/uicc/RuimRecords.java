@@ -684,10 +684,15 @@ public class RuimRecords extends IccRecords {
                 data = (byte[])ar.result;
 
                 if (ar.exception != null) {
-                    break;
++                    if(mFh.needsFakeIccid()) {
++                        mIccId = FAKE_ICCID;
++                    } else {
++                        break;
++                    }
++                } else {
++                    mIccId = IccUtils.bcdToString(data, 0, data.length);
                 }
 
-                mIccId = IccUtils.bcdToString(data, 0, data.length);
                 mFullIccId = IccUtils.bchToString(data, 0, data.length);
 
                 log("iccid: " + SubscriptionInfo.givePrintableIccid(mFullIccId));
