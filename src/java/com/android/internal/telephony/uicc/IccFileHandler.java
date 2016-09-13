@@ -661,10 +661,6 @@ public abstract class IccFileHandler extends Handler implements IccConstants {
         return null;
     }
 
-    public boolean needsFakeIccid() {
-        return mCi.needsOldRilFeature("fakeiccid");
-    }
-
     protected abstract String getEFPath(int efid);
     protected abstract void logd(String s);
 
